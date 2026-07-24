@@ -1,0 +1,30 @@
+services:
+  claude:
+    purpose: language_model_and_agent_runtime
+    status: active
+    owner: human_owner
+    authentication: claude_account
+    paid_plan: pro
+    external_actions_allowed: false
+
+  github:
+    purpose: source_control_and_governance
+    status: active
+    owner: human_owner
+    repository_visibility: private
+    two_factor_authentication: required
+    write_access_for_agents: false
+
+  anthropic_api:
+    purpose: future_programmatic_agent_runtime
+    status: not_configured
+    billing_enabled: false
+
+  github_mcp:
+    purpose: future_agent_access_to_github
+    status: not_configured
+    mode: read_only
+
+  external_business_systems:
+    purpose: future_integrations
+    status: prohibited_during_kickoff

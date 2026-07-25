@@ -1,0 +1,168 @@
+version: "1.0"
+
+governance:
+  human_owner:
+    role: "final_approval_authority"
+    final_authority: true
+
+  approval:
+    human_approval_mandatory: true
+
+    required_for:
+      - external_actions
+      - high_risk_actions
+      - publishing
+      - sending_messages
+      - production_deployment
+      - merge_to_protected_branch
+      - deletion_of_files
+      - deletion_of_data
+      - permission_changes
+      - installation_of_skills
+      - installation_of_plugins
+      - installation_of_mcp_servers
+      - use_of_credentials
+      - access_to_sensitive_data
+      - financial_actions
+      - legal_decisions
+
+  autonomy:
+    autonomous_external_actions: false
+    autonomous_publishing: false
+    autonomous_deployment: false
+    autonomous_merge_to_main: false
+    autonomous_permission_changes: false
+    autonomous_installation_of_tools: false
+
+  repository:
+    repository_modification_allowed: true
+    main_branch_protected: true
+    direct_commit_to_main_allowed: false
+    pull_request_required: true
+    force_push_allowed: false
+    file_deletion_allowed: false
+
+  internet_access:
+    allowed: false
+    allowed_only_when_explicitly_requested: true
+    external_sources_must_be_declared: true
+
+  skills:
+    use_of_approved_skills_allowed: true
+    installation_requires_human_approval: true
+    unreviewed_skills_allowed: false
+    third_party_skills_require_review: true
+
+  mcp:
+    enabled: false
+    installation_requires_human_approval: true
+    external_connections_require_human_approval: true
+    default_access_mode: "read_only"
+
+  data:
+    synthetic_data_allowed: true
+    non_confidential_data_allowed: true
+    client_data_allowed: false
+    personal_data_allowed: false
+    sensitive_data_allowed: false
+    credentials_in_repository_allowed: false
+    secrets_in_repository_allowed: false
+
+  agents:
+    orchestrator:
+      can_create_tasks: true
+      can_assign_tasks: true
+      can_modify_specialist_deliverables: false
+      can_approve_deliverables: false
+      can_execute_external_actions: false
+
+    specialist:
+      can_execute_assigned_tasks: true
+      can_create_tasks: false
+      can_modify_governance: false
+      can_approve_own_work: false
+      can_communicate_directly_with_human_owner: false
+      can_execute_external_actions: false
+
+    reviewer:
+      can_review_deliverables: true
+      can_modify_deliverables: false
+      can_approve_human_decisions: false
+      can_execute_specialist_tasks: false
+      can_execute_external_actions: false
+
+  risk_levels:
+    low:
+      human_approval_before_draft_creation: false
+      examples:
+        - brainstorming
+        - internal_summaries
+        - synthetic_data_analysis
+        - internal_drafts
+
+    medium:
+      human_review_required: true
+      examples:
+        - file_modification
+        - code_changes
+        - document_generation
+        - configuration_changes
+        - pull_request_creation
+
+    high:
+      explicit_human_approval_required: true
+      examples:
+        - sending_emails
+        - publishing_content
+        - production_deployment
+        - merge_to_main
+        - deletion_of_data
+        - modification_of_external_systems
+        - financial_transactions
+        - legal_actions
+        - credential_usage
+
+  prohibited_actions:
+    - send_emails_without_approval
+    - publish_content_without_approval
+    - deploy_to_production_without_approval
+    - merge_to_main_without_approval
+    - delete_files_without_approval
+    - delete_external_data
+    - modify_external_systems
+    - change_permissions
+    - expose_credentials
+    - expose_secrets
+    - invent_data
+    - invent_sources
+    - install_unapproved_skills
+    - install_unapproved_plugins
+    - install_unapproved_mcp_servers
+
+  escalation:
+    escalate_to_human_owner_when:
+      - required_information_is_missing
+      - credentials_are_required
+      - external_integration_is_required
+      - new_skill_is_required
+      - new_mcp_server_is_required
+      - high_risk_action_is_requested
+      - agents_produce_conflicting_outputs
+      - reviewer_detects_critical_risk
+      - governance_change_is_required
+      - sensitive_data_is_detected
+      - task_cannot_meet_acceptance_criteria
+
+  workflow:
+    required_sequence:
+      - request_intake
+      - risk_classification
+      - task_planning
+      - specialist_execution
+      - independent_review
+      - human_approval
+      - archival
+
+    reviewer_required: true
+    human_approval_gate_required: true
+    audit_trail_required: true

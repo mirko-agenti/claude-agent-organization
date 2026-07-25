@@ -1,0 +1,205 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://claude-agent-organization.local/schemas/message.schema.json",
+  "title": "Agent Message Schema",
+  "description": "Standard communication protocol between AI agents.",
+  "type": "object",
+
+  "required": [
+    "message_id",
+    "request_id",
+    "task_id",
+    "sender",
+    "receiver",
+    "message_type",
+    "priority",
+    "status",
+    "subject",
+    "body",
+    "created_at"
+  ],
+
+  "properties": {
+
+    "message_id": {
+      "type": "string",
+      "pattern": "^MSG-[0-9]{4}-[0-9]{4}$",
+      "description": "Unique message identifier."
+    },
+
+    "request_id": {
+      "type": "string",
+      "pattern": "^REQ-[0-9]{4}-[0-9]{4}$"
+    },
+
+    "task_id": {
+      "type": "string",
+      "pattern": "^TASK-[0-9]{4}-[0-9]{4}$"
+    },
+
+    "sender": {
+      "type": "string",
+      "enum": [
+        "human-owner",
+        "orchestrator",
+        "general-specialist",
+        "reviewer"
+      ]
+    },
+
+    "receiver": {
+      "type": "string",
+      "enum": [
+        "human-owner",
+        "orchestrator",
+        "general-specialist",
+        "reviewer"
+      ]
+    },
+
+    "message_type": {
+      "type": "string",
+      "enum": [
+        "task_assignment",
+        "task_update",
+        "information_request",
+        "information_response",
+        "review_request",
+        "review_response",
+        "revision_request",
+        "revision_response",
+        "approval_request",
+        "approval_response",
+        "warning",
+        "error",
+        "notification"
+      ]
+    },
+
+    "priority": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ]
+    },
+
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "sent",
+        "received",
+        "in_progress",
+        "answered",
+        "closed"
+      ]
+    },
+
+    "subject": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 150
+    },
+
+    "body": {
+      "type": "string",
+      "minLength": 10
+    },
+
+    "attachments": {
+      "type": "array",
+      "description": "Optional list of attached files.",
+      "items": {
+        "type": "string"
+      },
+      "default": []
+    },
+
+    "references": {
+      "type": "array",
+      "description": "References to related messages or documents.",
+      "items": {
+        "type": "string"
+      },
+      "default": []
+    },
+
+    "expected_response": {
+      "type": "object",
+      "properties": {
+
+        "required": {
+          "type": "boolean",
+          "default": false
+        },
+
+        "response_type": {
+          "type": "string",
+          "enum": [
+            "acknowledgement",
+            "information",
+            "deliverable",
+            "review",
+            "approval",
+            "decision",
+            "none"
+          ]
+        },
+
+        "deadline": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+
+    "metadata": {
+      "type": "object",
+      "properties": {
+
+        "conversation_id": {
+          "type": "string"
+        },
+
+        "workflow_step": {
+          "type": "string"
+        },
+
+        "risk_level": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+
+        "version": {
+          "type": "string"
+        },
+
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+
+  "additionalProperties": false
+}

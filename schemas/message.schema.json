@@ -43,6 +43,9 @@
         "human-owner",
         "orchestrator",
         "general-specialist",
+        "business-analyst",
+        "financial-analyst",
+        "research-specialist",
         "reviewer"
       ]
     },
@@ -53,6 +56,9 @@
         "human-owner",
         "orchestrator",
         "general-specialist",
+        "business-analyst",
+        "financial-analyst",
+        "research-specialist",
         "reviewer"
       ]
     },

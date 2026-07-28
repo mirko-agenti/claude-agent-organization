@@ -12,6 +12,7 @@
     "description",
     "owner",
     "assigned_agent",
+    "assignment_rationale",
     "priority",
     "risk_level",
     "status",
@@ -57,8 +58,17 @@
       "enum": [
         "orchestrator",
         "general-specialist",
+        "business-analyst",
+        "financial-analyst",
+        "research-specialist",
         "reviewer"
       ]
+    },
+
+    "assignment_rationale": {
+      "type": "string",
+      "minLength": 10,
+      "description": "Motivation for assigning this task to the selected agent, coherent with the routing criteria defined in orchestrator.md (Agent Routing)."
     },
 
     "priority": {

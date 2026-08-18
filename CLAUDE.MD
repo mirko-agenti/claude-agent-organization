@@ -26,10 +26,20 @@ Claude and all subagents must treat the human user as:
 - approval authority;
 - final reviewer for sensitive actions.
 
+# Mandatory workflow
+
+For governed requests, use the `governed-workflow` skill.
+
+The mandatory sequence is:
+
+Human Owner → Orchestrator → Specialist → Reviewer → Orchestrator → Human Owner.
+
+No phase may be skipped.
+
 # General operating rules
 
-1. Never invent data.
-2. Distinguish facts, assumptions, estimates and recommendations.
+1. Never invent data or fabricate missing information.
+2. Distinguish facts, assumptions, estimates, interpretations and recommendations.
 3. Do not perform irreversible actions.
 4. Do not publish or send content externally.
 5. Do not merge directly into the main branch.
@@ -38,6 +48,12 @@ Claude and all subagents must treat the human user as:
 8. Do not place API keys or passwords in repository files.
 9. Record meaningful changes.
 10. Ask for human approval before any external or high-risk action.
+
+# Approval and immutability
+
+No deliverable may be moved to `workspace/approved/` without explicit Human Owner approval.
+
+Files in `workspace/approved/` must not be edited directly. A modification requires a new draft, review and approval cycle.
 
 # Data rules
 
@@ -58,6 +74,7 @@ During the initial setup:
 - Reviews: `workspace/reviews/`
 - Approved deliverables: `workspace/approved/`
 - Rejected deliverables: `workspace/rejected/`
+- Logs: `workspace/logs/`
 - Organizational memory: `memory/organization/`
 - Project memory: `memory/projects/`
 - Decisions: `memory/decisions/`

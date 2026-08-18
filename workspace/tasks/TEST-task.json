@@ -1,0 +1,25 @@
+{
+  "task_id": "TASK-2026-0001",
+  "request_id": "REQ-2026-0001",
+  "title": "Analisi processo amministrativo",
+  "description": "Analisi del processo amministrativo e identificazione delle opportunità di miglioramento.",
+  "owner": "human-owner",
+  "assigned_agent": "general-specialist",
+  "assignment_rationale": "Nessuno specialista verticale dedicato è appropriato per questo task; ricade nell'ambito generico di fallback del general-specialist.",
+  "priority": "medium",
+  "risk_level": "low",
+  "status": "ready",
+  "inputs": [],
+  "expected_output": {
+    "type": "document",
+    "path": "workspace/drafts/",
+    "format": "markdown"
+  },
+  "acceptance_criteria": [
+    "Analisi completata",
+    "Rischi identificati"
+  ],
+  "dependencies": [],
+  "created_at": "2026-07-28T10:00:00Z",
+  "updated_at": "2026-07-28T10:00:00Z"
+}
